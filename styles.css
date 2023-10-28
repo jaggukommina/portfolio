@@ -133,12 +133,12 @@ body.opened>div.card h1 {
     display: flex;
     flex-direction: column;
     row-gap: 32px;
+    text-align: center;
 }
 
 .brief h1 {
     overflow: hidden;
     white-space: nowrap;
-    width: max-content;
 }
 
 .explore {
@@ -184,10 +184,6 @@ body.opened>div.card h1 {
     flex-direction: column;
     align-items: center;
     row-gap: 12.5px;
-}
-
-.short_summary {
-    text-align: center;
 }
 
 .details>div {
