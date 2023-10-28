@@ -32,7 +32,7 @@ body.closed {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to left, var(--bg-color2),var(--transparent-20), var(--bg-color1)), var(--bg-color2);
+    background: linear-gradient(to left, var(--bg-color2), var(--transparent-20), var(--bg-color1)), var(--bg-color2);
     color: var(--color2);
     width: 100vw;
 }
@@ -47,7 +47,7 @@ body.closed>div.card {
 }
 
 body.closed>div.explore {
-    width: auto;
+    flex: 0 0 50px;
     box-sizing: border-box;
     background: linear-gradient(var(--transparent-20), var(--bg-color2), var(--transparent-20)), var(--bg-color2);
     background-size: 300% 300%;
@@ -56,14 +56,16 @@ body.closed>div.explore {
 
 @keyframes background-gradient {
     0% {
-		background-position: 0% 0%;
-	}
-	50% {
-		background-position: 0% 100%;
-	}
-	100% {
-		background-position: 0% 0%;
-	}
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 0% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
 }
 
 body.closed>div.details {
@@ -441,13 +443,15 @@ div.contact>div a:hover {
 }
 
 @keyframes ping {
-    0%{
+    0% {
         box-shadow: none;
     }
-    50%{
+
+    50% {
         box-shadow: 0px 0px 200px black;
     }
-    100%{
+
+    100% {
         box-shadow: none;
     }
 }
