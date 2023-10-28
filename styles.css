@@ -1,0 +1,426 @@
+:root,
+* {
+    margin: 0;
+    font-family: Calibri, sans-serif;
+    font-size: 16px;
+
+    --color1: #b5838d;
+    --bg-color1: #723d46;
+
+    --color2: #748cab;
+    --bg-color2: #001524;
+
+    --transparent-10: #ffffff10;
+    --transparent-20: #ffffff20;
+    --transparent-40: #ffffff40;
+    --transparent-50: #ffffff50;
+    --transparent-75: #ffffffab;
+}
+
+body {
+    background-color: var(--bg-color2);
+    color: black;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body.closed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-color2);
+    color: var(--color2);
+    width: 100vw;
+}
+
+body.closed>div.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+    flex:1;
+    box-sizing: border-box;
+}
+
+body.closed>div.explore {
+    width: auto;
+    box-sizing: border-box;
+    background-color: var(--bg-color1);
+}
+
+body.closed>div.details {
+    width: 0px;
+    overflow: hidden;
+}
+
+body.opened {
+    display: flex;
+}
+
+body.opened>div.card {
+    flex: 0 0 auto;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+    padding: 2.5%;
+    box-sizing: content-box;
+    background: var(--bg-color2);
+    color: var(--color2);
+}
+
+.body.opened>div.explore{
+    background-color: red;
+}
+
+body.opened>div.details {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 2.5% 3%;
+    display: grid;
+    place-items: start;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: var(--bg-color1);
+    color: var(--transparent-75);
+}
+
+body.opened>div.card h1 {
+    align-self: center;
+}
+
+.card h1 {
+    font-size: 3rem;
+    font-family: 'Consola Mono', sans-serif;
+}
+
+.card>img {
+    width: 320px;
+    border-radius: 100%;
+    aspect-ratio: 1/1;
+}
+
+.card p {
+    letter-spacing: 0.025em;
+    line-height: 1.4em;
+}
+
+.card>blockquote {
+    position: absolute;
+    bottom: 20px;
+}
+
+.brief {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+}
+
+.brief h1 {
+    overflow: hidden;
+    white-space: nowrap;
+    width: max-content;
+}
+
+.explore {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.explore>button {
+    padding:25px 10px;
+    font-size: 16px;
+    color: var(--bg-color2);
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    border-left:2px solid transparent;
+    transition: all 200ms linear;
+    background-color: transparent;
+    color: var(--transparent-50);
+}
+
+.explore>button>span{
+    writing-mode: vertical-rl;
+}
+
+.explore>button:hover {
+    cursor: pointer;
+    box-sizing: border-box;
+    color:var(--transparent-75);
+    background-color: var(--bg-color1);
+}
+
+.explore>button.active{
+    color: var(--transparent-50);
+    background-color: var(--bg-color1);
+    border-left:2px solid var(--transparent-50);
+}
+
+.short_summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 12.5px;
+}
+
+.short_summary{
+    text-align: center;
+}
+
+.details>div {
+    display: none;
+}
+
+.details>div.show {
+    display: block
+}
+
+.details>div.skills.show {
+    display: flex;
+    flex-direction: column;
+    gap: 12.5px;
+}
+
+.skills div {
+    color: var(--color1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.skills ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skills ul li {
+    display: inline;
+    padding: 5px 20px;
+    background: var(--color1);
+    color: var(--bg-color1);
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.close {
+    font-weight: bold;
+    width: 48px;
+    aspect-ratio: 1/1;
+    color: black;
+    background-color: var(--bg-color1);
+    color: var(--color1);
+    border: none;
+    outline: none;
+    transform: rotate(45deg);
+    position: relative;
+    z-index: 1;
+    transition: color 200ms linear,
+        background-color 200ms linear;
+    animation-direction: reverse;
+}
+
+.close>span {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    right: 5px;
+    bottom: 5px;
+    transform: rotate(315deg);
+}
+
+.close:hover {
+    cursor: pointer;
+    color: var(--color2);
+    background-color: var(--bg-color2);
+}
+
+.experience_card {
+    display: flex;
+    flex-direction: row;
+    min-height: 100px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.experience_card>div.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    flex: 0 0 250px;
+    text-align: center;
+}
+
+.experience_card>div.main {
+    color: var(--color1);
+}
+
+.experience_card>div.main h1 {
+    font-size: 24px;
+}
+
+.experience_card>div.main::after,
+.experience_card>div.main::before {
+    content: '';
+    flex: 2;
+    width: 1px;
+    align-self: center;
+    background: var(--color1);
+}
+
+.experience_card:first-child>div.main::before {
+    background: transparent;
+    flex: 0 0 auto;
+    height: 20px;
+}
+
+.experience_card:last-child>div.main::after {
+    background: transparent;
+    flex: 0 0 auto;
+    height: 5px;
+}
+
+.experience_card>div.content h2 {
+    color: var(--color1);
+}
+
+.experience_card>div.content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.experience_card>div.content>ul {
+    padding: 0px;
+    padding-left: 15px;
+    font-size: 12px;
+}
+
+.experience_card>div.content>ul li {
+    line-height: 20px;
+    margin-bottom: 5px;
+}
+
+.experience_card>div.content>ul li:last-child() {
+    margin-bottom: 0p;
+}
+
+div.education.show {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.education_card {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-self: flex-start;
+    letter-spacing: 0.5px;
+    color: var(--color1);
+    padding: 20px;
+    border-radius: 5px;
+    background-color: var(--transparent-10);
+}
+
+.education_card:nth-of-type(3) {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.education_card h1 {
+    font-size: 24px;
+}
+
+.education_card h1,
+.education_card h2 {
+    color: var(--transparent-75);
+}
+
+.timeline_line {
+    height: 50px;
+    border: 1px dotted var(--transparent-20);
+    align-self: center;
+}
+
+.education>div.timeline_line:last-of-type {
+    display: none;
+}
+
+div.about.show {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+div.about>p {
+    line-height: 25px;
+    letter-spacing: 0.025em;
+    font-size: 18px;
+    color: var(--transparent-50);
+}
+
+div.about>p:first-child,
+div.about>p>b {
+    font-size: 24px;
+    line-height: 1.5em;
+}
+
+div.about>p:first-child {
+    padding: 10px 25px;
+    color: var(--transparent-75);
+    background-color: var(--transparent-10);
+    border-radius: 5px;
+}
+
+.details>div.contact.show {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    box-sizing: content-box;
+}
+
+div.contact>div {
+    padding: 25px;
+    color: var(--transparent-50);
+    background-color: var(--transparent-10);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    justify-self: center;
+}
+
+div.contact>div:first-child {
+    flex: 1 1 100%;
+    color: var(--transparent-40);
+}
+
+div.contact>div:not(:first-child) h2 {
+    color: var(--transparent-75);
+}
+
+div.contact>div a,
+div.contact>div a:visited {
+    color: var(--transparent-75);
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 100ms linear;
+}
+
+div.contact>div a:hover {
+    color: var(--transparent-75);
+    text-decoration: underline;
+}
