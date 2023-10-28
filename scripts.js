@@ -218,7 +218,7 @@ function showTab(button) {
     if (isTabActive) {
         bodyDOM.classList.remove('opened');
         bodyDOM.classList.add('closed');
-    }else{
+    } else {
         button.classList.add('active');
         bodyDOM.classList.remove('closed');
         bodyDOM.classList.add('opened');
@@ -253,6 +253,4 @@ function closeAllDetails() {
     educationDOM.classList.remove('show');
     aboutDOM.classList.remove('show');
     contactDOM.classList.remove('show');
-
-
 }
