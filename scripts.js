@@ -239,7 +239,13 @@ function showTab(button) {
         bodyDOM.classList.remove('closed');
         bodyDOM.classList.add('opened');
 
-        window.location.href = `${window.location.origin}#${button.name}`;
+        let location = window.location.href;
+        if (location.indexOf('#') > 0) {
+            let activeTab = location.split('#').pop();
+            window.location.href = window.location.href.replace(activeTab, button.name);
+        } else {
+            window.location.href = `${window.location.href}#${button.name}`;
+        }
     }
 
     switch (button.name) {
