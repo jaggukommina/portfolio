@@ -38,6 +38,7 @@ var experience = {
         "to": null,
         "role": "Senior software engineer",
         "location": "Hyderabad, India",
+        "website": "https://www.wwt.com/",
         "work": [
             "Developed web applications using .NET technologies, including C# and Blazor Web Assembly.",
             "Implemented front-end components and interactive UI using Blazor's component-based architecture.",
@@ -51,6 +52,7 @@ var experience = {
         "to": "April-2021",
         "role": "Senior software engineer",
         "location": "Hyderabad, India",
+        "website": "https://www.factset.com/",
         "work": [
             "Developed and maintained contact centre socware using dotnet, WCF services, SQL Server, and Vue.js.",
             "Integrated various communication channels (e.g., phone, chat) into the contact centre socware, ensuringseamless customer interactions.",
@@ -62,6 +64,7 @@ var experience = {
         "to": "Nov-2018",
         "role": "Software engineer",
         "location": "Hyderabad, India",
+        "website": "https://www.ggktech.com/",
         "work": [
             "Developed and maintained RESTful API endpoints and functionalities including authentication, and dataretrieval using Node.js and Express.js.",
             "Built user-friendly and interactive client applica+ons using Angular framework to provide a seamless user experience."
@@ -72,6 +75,7 @@ var experience = {
         "to": "April-2018",
         "role": "Systems engineer",
         "location": "Hyderabad, India",
+        "website": "https://www.tcs.com/",
         "work": [
             "Developed and maintained web applica+ons using Dotnet framework, C#, and SQL Server.",
             "Collaborated with a cross-functional team to design and implement high-performance web solutions.",
@@ -106,7 +110,8 @@ var education = {
         "end": "2008",
         "college": "Board Of Secondary Education Andhra Pradesh",
         "place": "Vegiwada, Andhra Pradesh",
-        "cgpa": "84"
+        "cgpa": "84",
+        "website": "https://bse.ap.gov.in/"
     }
 }
 
@@ -137,12 +142,12 @@ function renderSkills() {
 function renderExperiences() {
     for (let key in experience) {
         const experience_card = document.createElement("div");
-        experience_card.classList.add("experience_card");
+        experience_card.classList.add("timeline_card");
 
         let main = document.createElement("div")
         main.classList.add("main");
-        let company = document.createElement("h1");
-        company.appendChild(document.createTextNode(key));
+        let role = document.createElement("h2");
+        role.appendChild(document.createTextNode(experience[key].role));
         let period = document.createElement("h4");
         let from = experience[key].from;
         let to = experience[key].to;
@@ -152,17 +157,24 @@ function renderExperiences() {
         else {
             period.appendChild(document.createTextNode(`${from} to ${to}`));
         }
-        var verticalLine = document.createElement("div");
-        verticalLine.classList.add("vertical_line");
-        main.appendChild(company);
+        main.appendChild(role);
         main.appendChild(period);
-        main.appendChild(verticalLine);
+
+        var verticalLine = document.createElement("div");
+        verticalLine.classList.add("timeline");
+        if (experience[key].to == undefined || experience[key].to == undefined) {
+            verticalLine.classList.add("current");
+        }
 
         let content = document.createElement("div");
         content.classList.add("content");
-        let role = document.createElement("h2");
-        role.appendChild(document.createTextNode(experience[key].role));
-        content.appendChild(role);
+        let company = document.createElement("h2");
+        company.appendChild(document.createTextNode(key));
+        content.appendChild(company);
+
+        let location = document.createElement("h4");
+        location.appendChild(document.createTextNode(experience[key].location));
+        content.appendChild(location);
 
         let list = document.createElement("ul");
         for (let s of experience[key].work) {
@@ -171,7 +183,16 @@ function renderExperiences() {
             list.appendChild(ss);
         }
         content.appendChild(list);
+
+        let website = document.createElement("a");
+        website.classList.add("link")
+        website.setAttribute("href", experience[key].website);
+        website.setAttribute("target", "_blank");
+        website.appendChild(document.createTextNode("website"));
+        content.appendChild(website);
+
         experience_card.appendChild(main);
+        experience_card.appendChild(verticalLine);
         experience_card.appendChild(content);
         experienceDOM.appendChild(experience_card);
     }
@@ -180,44 +201,58 @@ function renderExperiences() {
 function renderEducation() {
     for (let key in education) {
         const educationCard = document.createElement("div");
-        educationCard.classList.add("education_card");
+        educationCard.classList.add("timeline_card");
 
+        let main = document.createElement("div");
+        main.classList.add("main");
         let title = document.createElement("h1");
         title.appendChild(document.createTextNode(key));
-        educationCard.appendChild(title);
-
-        let sub = document.createElement("span");
-        sub.appendChild(document.createTextNode("in"));
-        educationCard.appendChild(sub);
-
-        let specilization = document.createElement("h2");
-        specilization.appendChild(document.createTextNode(education[key].branch));
-        educationCard.appendChild(specilization);
-
-        let college = document.createElement("h4");
-        college.appendChild(document.createTextNode(education[key].college));
-        educationCard.appendChild(college);
-
-        let cgpa = document.createElement("p");
-        cgpa.appendChild(document.createTextNode(`with ${education[key].cgpa} ${education[key].cgpa < 10 ? 'cgpa' : 'percentage'}`));
-        educationCard.appendChild(cgpa);
+        main.appendChild(title);
 
         let years = document.createElement("p");
         years.appendChild(document.createTextNode(
             education[key].start == null
                 ? `Passed out - ${education[key].end}`
-                : `From ${education[key].start} to ${education[key].end}`));
-        educationCard.appendChild(years);
+                : `${education[key].start} to ${education[key].end}`));
+        main.appendChild(years);
+
+        let timeline = document.createElement("div");
+        timeline.classList.add("timeline");
+
+        let content = document.createElement("div");
+        content.classList.add("content");
+
+        let specilization = document.createElement("h2");
+        specilization.appendChild(document.createTextNode(education[key].branch));
+        content.appendChild(specilization);
+
+        let cgpa = document.createElement("p");
+        cgpa.appendChild(document.createTextNode(`with ${education[key].cgpa} ${education[key].cgpa < 10 ? 'cgpa' : 'percentage'}`));
+        content.appendChild(cgpa);
+
+        let sub = document.createElement("span");
+        sub.appendChild(document.createTextNode("from"));
+        content.appendChild(sub);
+
+        let college = document.createElement("h4");
+        college.appendChild(document.createTextNode(education[key].college));
+        content.appendChild(college);
 
         let location = document.createElement("p");
         location.appendChild(document.createTextNode(education[key].place));
-        educationCard.appendChild(location);
+        content.appendChild(location);
 
+        let website = document.createElement("a");
+        website.classList.add("link")
+        website.setAttribute("href", education[key].website);
+        website.setAttribute("target", "_blank");
+        website.appendChild(document.createTextNode("website"));
+        content.appendChild(website);
+
+        educationCard.appendChild(main);
+        educationCard.appendChild(timeline);
+        educationCard.appendChild(content);
         educationDOM.appendChild(educationCard);
-
-        let lineEl = document.createElement("div");
-        lineEl.classList.add("timeline_line");
-        educationDOM.appendChild(lineEl);
     }
 }
 
